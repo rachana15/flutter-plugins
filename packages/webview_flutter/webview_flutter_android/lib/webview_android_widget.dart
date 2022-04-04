@@ -390,9 +390,9 @@ class WebViewAndroidPlatformController extends WebViewPlatformController {
   }
 
   Future<void> _setHasProgressTracking(bool hasProgressTracking) async {
+    webChromeClient._onShowFileChooser = callbacksHandler.onShowFileChooser;
     if (hasProgressTracking) {
       webChromeClient._onProgress = callbacksHandler.onProgress;
-      webChromeClient._onShowFileChooser = callbacksHandler.onProgress;
     } else {
       webChromeClient._onProgress = null;
     }
