@@ -126,6 +126,7 @@ class WebViewAndroidPlatformController extends WebViewPlatformController {
     _setCreationParams(creationParams);
     webView.setDownloadListener(downloadListener);
     webView.setWebChromeClient(webChromeClient);
+    webView.settings.setAllowFileAccess(true);
 
     final String? initialUrl = creationParams.initialUrl;
     if (initialUrl != null) {
