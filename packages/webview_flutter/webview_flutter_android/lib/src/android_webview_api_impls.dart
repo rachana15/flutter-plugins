@@ -801,7 +801,7 @@ class WebChromeClientFlutterApiImpl extends WebChromeClientFlutterApi {
       webViewInstance != null,
       'InstanceManager does not contain an WebView with instanceId: $webViewInstanceId',
     );
-    instance!.onShowFileChooser(webViewInstance!);
+    return instance!.onShowFileChooser(webViewInstance!);
   }
 }
 

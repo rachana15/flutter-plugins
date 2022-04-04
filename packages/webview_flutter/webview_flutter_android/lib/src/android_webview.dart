@@ -782,7 +782,9 @@ abstract class WebChromeClient {
   /// Notify the host application that a file should be downloaded.
   void onProgressChanged(WebView webView, int progress) {}
 
-  bool onShowFileChooser(WebView webView) {}
+  bool onShowFileChooser(WebView webView) {
+    return true;
+  }
 }
 
 /// Encompasses parameters to the [WebViewClient.requestLoading] method.
