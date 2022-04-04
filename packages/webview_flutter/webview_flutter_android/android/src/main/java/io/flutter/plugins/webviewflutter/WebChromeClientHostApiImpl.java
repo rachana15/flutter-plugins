@@ -6,6 +6,8 @@ package io.flutter.plugins.webviewflutter;
 
 import android.os.Build;
 import android.os.Message;
+import android.net.Uri;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -98,6 +100,16 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
       resultMsg.sendToTarget();
 
       return true;
+    }
+
+    @Override
+    public boolean onShowFileChooser (WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+      if (flutterApi != null) {
+          //NOTE: callback is not implemented at the moment
+          //NOTE: reply should unblock this thread
+          flutterApi.onShowFileChooser(this, view, reply -> {});
+      }
+      return true; // TODO should come from reply
     }
 
     @Override

@@ -485,6 +485,12 @@ class _PlatformCallbacksHandler implements WebViewPlatformCallbacksHandler {
   }
 
   @override
+  FutureOr<bool> onShowFileChooser() async {
+    print("onShowFileChooser called motha fuckaaaaaaa!!!!!!!");
+    return true;
+  }
+
+  @override
   void onWebResourceError(WebResourceError error) {
     if (_widget.onWebResourceError != null) {
       _widget.onWebResourceError!(error);
