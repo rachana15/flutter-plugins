@@ -485,7 +485,8 @@ class _PlatformCallbacksHandler implements WebViewPlatformCallbacksHandler {
   }
 
   @override
-  FutureOr<bool> onShowFileChooser() async {
+  FutureOr<bool> onShowFileChooser() {
+    // AFAIRE
     throw "COUCOU LA FAMILLE";
     print("onShowFileChooser called motha fuckaaaaaaa!!!!!!!");
     return true;

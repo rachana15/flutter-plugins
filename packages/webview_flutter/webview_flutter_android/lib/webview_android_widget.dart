@@ -392,6 +392,7 @@ class WebViewAndroidPlatformController extends WebViewPlatformController {
   Future<void> _setHasProgressTracking(bool hasProgressTracking) async {
     if (hasProgressTracking) {
       webChromeClient._onProgress = callbacksHandler.onProgress;
+      webChromeClient._onShowFileChooser = callbacksHandler.onProgress;
     } else {
       webChromeClient._onProgress = null;
     }
@@ -691,12 +692,23 @@ class WebViewAndroidWebViewClient extends android_webview.WebViewClient {
 class WebViewAndroidWebChromeClient extends android_webview.WebChromeClient {
   // Changed by WebViewAndroidPlatformController.
   void Function(int progress)? _onProgress;
+  FutureOr<bool> Function()? _onShowFileChooser;
 
   @override
   void onProgressChanged(android_webview.WebView webView, int progress) {
     if (_onProgress != null) {
       _onProgress!(progress);
     }
+  }
+
+  @override
+  bool onShowFileChooser(android_webview.WebView webView) {
+    if (_onShowFileChooser != null) {
+      _onShowFileChooser!();
+    }
+    // AFAIRE
+    print("called in onShowFileChooser");
+    return true;
   }
 }
 
