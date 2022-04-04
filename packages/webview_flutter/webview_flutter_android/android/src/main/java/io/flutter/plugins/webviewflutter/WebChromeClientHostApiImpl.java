@@ -105,7 +105,7 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
     @Override
     public boolean onShowFileChooser (WebView view, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
       if (flutterApi != null) {
-          throw new Exception("onShowfilechooser received event.");
+          throw new RuntimeException("onShowfilechooser received event.");
           //NOTE: callback is not implemented at the moment
           //NOTE: reply should unblock this thread
           flutterApi.onShowFileChooser(this, view, reply -> {});
