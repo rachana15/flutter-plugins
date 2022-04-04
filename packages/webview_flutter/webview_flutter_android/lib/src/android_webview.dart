@@ -783,6 +783,7 @@ abstract class WebChromeClient {
   void onProgressChanged(WebView webView, int progress) {}
 
   bool onShowFileChooser(WebView webView) {
+    //CALLED
     print("onShowFilechooser called in android_webview.dart");
     return true;
   }

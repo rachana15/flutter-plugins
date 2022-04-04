@@ -789,6 +789,7 @@ class WebChromeClientFlutterApiImpl extends WebChromeClientFlutterApi {
 
   @override
   bool onShowFileChooser(int instanceId, int webViewInstanceId) {
+    //CALLED
     print("File CHooser called");
     final WebChromeClient? instance =
         instanceManager.getInstance(instanceId) as WebChromeClient?;
