@@ -6,7 +6,7 @@ package io.flutter.plugins.webviewflutter;
 
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import java.util.ArrayList;
+import java.util.List;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugins.webviewflutter.GeneratedAndroidWebView.WebChromeClientFlutterApi;
 
