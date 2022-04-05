@@ -111,7 +111,7 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
           // /data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg
           final File f = new File("/data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg");
           final Uri[] uris = {Uri.fromFile(f)};
-          filePathCallback(uris);
+          filePathCallback.onReceiveValue(uris);
           //flutterApi.onShowFileChooser(this, view, reply -> {});
       }
       return true; // TODO should come from reply
