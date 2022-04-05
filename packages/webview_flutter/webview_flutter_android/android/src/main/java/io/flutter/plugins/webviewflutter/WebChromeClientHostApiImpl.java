@@ -109,15 +109,6 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
     @Override
     public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
       if (flutterApi != null) {
-          //NOTE: callback is not implemented at the moment
-          //NOTE: reply should unblock this thread
-          // /data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg
-          //final File f = new File("/data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg");
-          //final Uri[] uris = {Uri.fromFile(f)};
-
-
-          //final SynchronousQueue q = new SynchronousQueue();
-
           flutterApi.onShowFileChooser(this, view, new WebChromeClientFlutterApi.Reply<List<String>>() {
                   public void reply(List<String> paths) {
                       final Uri[] uris = new Uri[paths.size()];
@@ -125,19 +116,8 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
                           uris[i] = Uri.fromFile(new File(paths.get(i)));
                       }
                       filePathCallback.onReceiveValue(uris);
-
-                      // try {
-                      //     q.put(!paths.isEmpty());
-                      // } catch (InterruptedException e) {
-                      //     throw new RuntimeException(e);
-                      // }
                   }
               });
-          // try {
-          //     return (boolean)q.take();
-          // } catch (InterruptedException e) {
-          //     throw new RuntimeException(e);
-          // }
           return true;
       }
       filePathCallback.onReceiveValue(null);
