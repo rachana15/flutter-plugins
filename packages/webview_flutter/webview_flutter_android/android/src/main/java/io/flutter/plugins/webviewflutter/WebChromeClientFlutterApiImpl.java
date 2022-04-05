@@ -6,6 +6,7 @@ package io.flutter.plugins.webviewflutter;
 
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import java.util.ArrayList;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugins.webviewflutter.GeneratedAndroidWebView.WebChromeClientFlutterApi;
 
@@ -41,7 +42,7 @@ public class WebChromeClientFlutterApiImpl extends WebChromeClientFlutterApi {
 
   /** Passes arguments from {@link WebChromeClient#onProgressChanged} to Dart. */
   public void onShowFileChooser(
-      WebChromeClient webChromeClient, WebView webView, Reply<List<String>> callback) {
+      WebChromeClient webChromeClient, WebView webView, Reply<ArrayList<String>> callback) {
     super.onShowFileChooser(
         instanceManager.getInstanceId(webChromeClient),
         instanceManager.getInstanceId(webView),
