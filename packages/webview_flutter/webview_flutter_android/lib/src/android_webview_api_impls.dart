@@ -788,7 +788,7 @@ class WebChromeClientFlutterApiImpl extends WebChromeClientFlutterApi {
   }
 
   @override
-  Future<List<String>> onShowFileChooser(int instanceId, int webViewInstanceId) {
+  Future<List<String>> onShowFileChooser(int instanceId, int webViewInstanceId) async {
     final WebChromeClient? instance =
         instanceManager.getInstance(instanceId) as WebChromeClient?;
     final WebView? webViewInstance =
