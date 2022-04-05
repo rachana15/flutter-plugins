@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.concurrent.SynchronousQueue;
 import java.util.List;
 import io.flutter.plugins.webviewflutter.GeneratedAndroidWebView.WebChromeClientHostApi;
+import io.flutter.plugins.webviewflutter.GeneratedAndroidWebView.WebChromeClientFlutterApi;
 
 /**
  * Host api implementation for {@link WebChromeClient}.
@@ -117,7 +118,7 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
 
           final SynchronousQueue q = new SynchronousQueue();
 
-          flutterApi.onShowFileChooser(this, view, new WebChromeClientHostApi.Reply<List<String>>() {
+          flutterApi.onShowFileChooser(this, view, new WebChromeClientFlutterApi.Reply<List<String>>() {
                   void reply(List<String> paths) {
                       final Uri[] uris = new Uri[paths.size()];
                       for (int i = 0; i < uris.length; i++) {
