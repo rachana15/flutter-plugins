@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
+import java.io.File;
 import io.flutter.plugins.webviewflutter.GeneratedAndroidWebView.WebChromeClientHostApi;
 
 /**
@@ -103,13 +104,15 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
     }
 
     @Override
-    public boolean onShowFileChooser (WebView view, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+    public boolean onShowFileChooser(WebView view, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
       if (flutterApi != null) {
           //NOTE: callback is not implemented at the moment
           //NOTE: reply should unblock this thread
-          System.out.print("before the onShowFileChooser");
-          flutterApi.onShowFileChooser(this, view, reply -> {});
-          System.out.print("after the onShowFileChooser");
+          // /data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg
+          final File f = new File("/data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg");
+          final Uri[] uris = [Uri.fromFile(f)];
+          filePathCallback(uris);
+          //flutterApi.onShowFileChooser(this, view, reply -> {});
       }
       return true; // TODO should come from reply
     }
