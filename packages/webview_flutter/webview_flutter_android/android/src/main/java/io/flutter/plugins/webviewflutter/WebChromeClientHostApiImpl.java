@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import java.io.File;
+import java.util.concurrent.SynchronousQueue;
+import java.util.List;
 import io.flutter.plugins.webviewflutter.GeneratedAndroidWebView.WebChromeClientHostApi;
 
 /**
@@ -109,12 +111,27 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
           //NOTE: callback is not implemented at the moment
           //NOTE: reply should unblock this thread
           // /data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg
-          final File f = new File("/data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg");
-          final Uri[] uris = {Uri.fromFile(f)};
-          filePathCallback.onReceiveValue(uris);
-          //flutterApi.onShowFileChooser(this, view, reply -> {});
+          //final File f = new File("/data/user/0/com.roamresearch.relemma/cache/image_picker6661096025908396861.jpg");
+          //final Uri[] uris = {Uri.fromFile(f)};
+
+
+          final SynchronousQueue q = new SynchronousQueue();
+
+          flutterApi.onShowFileChooser(this, view, new Reply<List<String>>() {
+                  void reply(List<String> paths) {
+                      final Uri[] uris = new Uri[paths.size()];
+                      for (int i = 0; i < uris.length; i++) {
+                          uris[i] = Uri.fromFile(new File(paths.get(i)));
+                      }
+                      filePathCallback.onReceiveValue(uris);
+                      q.put(!paths.isEmpty());
+                  }
+              });
+
+          return (boolean)q.take();
       }
-      return true; // TODO should come from reply
+      filePathCallback.onReceiveValue(null);
+      return true;
     }
 
     @Override
