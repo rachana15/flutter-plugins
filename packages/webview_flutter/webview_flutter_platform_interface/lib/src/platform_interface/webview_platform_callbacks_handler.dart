@@ -27,7 +27,7 @@ abstract class WebViewPlatformCallbacksHandler {
   /// /// Only works when [WebSettings.hasProgressTracking] is set to `true`.
   void onProgress(int progress);
 
-  FutureOr<bool> onShowFileChooser();
+  Future<List<String>> onShowFileChooser();
 
   /// Report web resource loading error to the host application.
   void onWebResourceError(WebResourceError error);

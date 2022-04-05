@@ -41,7 +41,7 @@ public class WebChromeClientFlutterApiImpl extends WebChromeClientFlutterApi {
 
   /** Passes arguments from {@link WebChromeClient#onProgressChanged} to Dart. */
   public void onShowFileChooser(
-      WebChromeClient webChromeClient, WebView webView, Reply<Boolean> callback) {
+      WebChromeClient webChromeClient, WebView webView, Reply<List<String>> callback) {
     super.onShowFileChooser(
         instanceManager.getInstanceId(webChromeClient),
         instanceManager.getInstanceId(webView),

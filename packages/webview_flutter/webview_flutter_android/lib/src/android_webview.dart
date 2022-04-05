@@ -782,10 +782,8 @@ abstract class WebChromeClient {
   /// Notify the host application that a file should be downloaded.
   void onProgressChanged(WebView webView, int progress) {}
 
-  bool onShowFileChooser(WebView webView) {
-    // AFAIRE
-    print("onShowFilechooser called in android_webview.dart");
-    return true;
+  Future<List<String>> onShowFileChooser(WebView webView) async {
+    return [];
   }
 }
 

@@ -788,9 +788,7 @@ class WebChromeClientFlutterApiImpl extends WebChromeClientFlutterApi {
   }
 
   @override
-  bool onShowFileChooser(int instanceId, int webViewInstanceId) {
-    //CALLED
-    print("File CHooser called");
+  Future<List<String>> onShowFileChooser(int instanceId, int webViewInstanceId) {
     final WebChromeClient? instance =
         instanceManager.getInstance(instanceId) as WebChromeClient?;
     final WebView? webViewInstance =
@@ -803,7 +801,8 @@ class WebChromeClientFlutterApiImpl extends WebChromeClientFlutterApi {
       webViewInstance != null,
       'InstanceManager does not contain an WebView with instanceId: $webViewInstanceId',
     );
-    return instance!.onShowFileChooser(webViewInstance!);
+    // AFAIRE
+    return await instance!.onShowFileChooser(webViewInstance!);
   }
 }
 

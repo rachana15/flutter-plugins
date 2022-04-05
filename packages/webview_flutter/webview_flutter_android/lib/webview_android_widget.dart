@@ -692,7 +692,7 @@ class WebViewAndroidWebViewClient extends android_webview.WebViewClient {
 class WebViewAndroidWebChromeClient extends android_webview.WebChromeClient {
   // Changed by WebViewAndroidPlatformController.
   void Function(int progress)? _onProgress;
-  FutureOr<bool> Function()? _onShowFileChooser;
+  Future<List<String>> Function()? _onShowFileChooser;
 
   @override
   void onProgressChanged(android_webview.WebView webView, int progress) {
@@ -702,13 +702,11 @@ class WebViewAndroidWebChromeClient extends android_webview.WebChromeClient {
   }
 
   @override
-  bool onShowFileChooser(android_webview.WebView webView) {
+  Future<List<String>> onShowFileChooser(android_webview.WebView webView) async {
     if (_onShowFileChooser != null) {
-      _onShowFileChooser!();
+      return await _onShowFileChooser!();
     }
-    // AFAIRE
-    print("called in onShowFileChooser");
-    return true;
+    return [];
   }
 }
 

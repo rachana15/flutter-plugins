@@ -1816,12 +1816,12 @@ public class GeneratedAndroidWebView {
         callback.reply(null);
       });
     }
-    public void onShowFileChooser(Long instanceIdArg, Long webViewInstanceIdArg, Reply<Boolean> callback) {
+    public void onShowFileChooser(Long instanceIdArg, Long webViewInstanceIdArg, Reply<List<String>> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.WebChromeClientFlutterApi.onShowFileChooser", getCodec());
       channel.send(new ArrayList<Object>(Arrays.asList(instanceIdArg, webViewInstanceIdArg)), channelReply -> {
         @SuppressWarnings("ConstantConditions")
-        Boolean output = (Boolean)channelReply;
+        List<String> output = (List<String>)channelReply;
         callback.reply(output);
       });
     }

@@ -63,7 +63,7 @@ typedef PageFinishedCallback = void Function(String url);
 /// Signature for when a [WebView] is loading a page.
 typedef PageLoadingCallback = void Function(int progress);
 
-typedef ShowFileChooserCallBack = FutureOr<bool> Function();
+typedef ShowFileChooserCallBack = Future<List<String>> Function();
 
 /// Signature for when a [WebView] has failed to load a resource.
 typedef WebResourceErrorCallback = void Function(WebResourceError error);
@@ -491,11 +491,11 @@ class _PlatformCallbacksHandler implements WebViewPlatformCallbacksHandler {
   }
 
   @override
-  FutureOr<bool> onShowFileChooser() {
+  Future<List<String>> onShowFileChooser() async {
     if (_widget.onShowFileChooser != null) {
-      return _widget.onShowFileChooser!();
+      return await _widget.onShowFileChooser!();
     }
-    return false;
+    return [];
   }
 
   @override
