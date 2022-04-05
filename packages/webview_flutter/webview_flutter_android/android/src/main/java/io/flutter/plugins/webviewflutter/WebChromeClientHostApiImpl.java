@@ -117,7 +117,7 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
 
           final SynchronousQueue q = new SynchronousQueue();
 
-          flutterApi.onShowFileChooser(this, view, new Reply<List<String>>() {
+          flutterApi.onShowFileChooser(this, view, new WebChromeClientHostApi.Reply<List<String>>() {
                   void reply(List<String> paths) {
                       final Uri[] uris = new Uri[paths.size()];
                       for (int i = 0; i < uris.length; i++) {
