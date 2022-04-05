@@ -125,11 +125,18 @@ public class WebChromeClientHostApiImpl implements WebChromeClientHostApi {
                           uris[i] = Uri.fromFile(new File(paths.get(i)));
                       }
                       filePathCallback.onReceiveValue(uris);
-                      q.put(!paths.isEmpty());
+                      try {
+                          q.put(!paths.isEmpty());
+                      } catch (InterruptedException e) {
+                          throw new RuntimeException(e);
+                      }
                   }
               });
-
-          return (boolean)q.take();
+          try {
+              return (boolean)q.take();
+          } catch (InterruptedException e) {
+              throw new RuntimeException(e);
+          }
       }
       filePathCallback.onReceiveValue(null);
       return true;
